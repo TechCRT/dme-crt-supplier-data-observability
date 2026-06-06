@@ -1,53 +1,94 @@
-# DME/CRT Supplier Data Validation & Pipeline Observability Dashboard
+﻿# DME/CRT Supplier Data Validation & Pipeline Observability
 
-This portfolio project demonstrates a local data operations workflow for public-safe DME/CRT supplier and product records. It validates incoming supplier/product CSV files, logs pipeline activity to SQLite, routes files through a PowerShell intake workflow, and documents a Power BI analytics layer for pipeline health and data quality review.
+A portfolio project demonstrating a local data operations workflow for supplier and product records in the DME/CRT space.
 
-The project is built to show practical data operations judgment: clear intake routing, row-level validation, durable audit tables, testable Python code, and dashboard-ready observability outputs.
+The system validates incoming supplier/product CSV files, logs pipeline activity to SQLite, routes files through a PowerShell intake workflow, and defines a Power BI-ready analytics layer for monitoring pipeline health and data quality.
 
-## What This Project Does
+The goal is to show practical data operations judgment: structured intake, row-level validation, durable audit tables, testable Python code, and clear observability outputs.
 
-Workflow:
+## Project Summary
 
-1. A CSV file is placed in `data/intake/`.
-2. PowerShell copies it to `data/processing/`.
-3. Python validates each product row.
-4. SQLite records run logs, file intake status, product audit rows, and validation findings.
-5. The processing copy is routed to `data/processed/`, `data/review/`, or `data/rejected/`.
-6. JSON and Markdown reports document run evidence.
-7. Power Query, DAX, and dashboard wireframe docs define the analytics layer.
+This project models a common operations problem: supplier/product records often arrive with missing fields, inconsistent categories, duplicate identifiers, unsupported values, or documentation gaps.
+
+The workflow catches those issues before downstream use by:
+
+1. Accepting a supplier/product CSV file.
+2. Running validation checks against each row.
+3. Logging pipeline activity and row-level findings to SQLite.
+4. Routing files based on validation outcome.
+5. Producing reviewable JSON run reports.
+6. Providing Power Query, DAX, and dashboard documentation for Power BI analysis.
+
+## Workflow
+
+```text
+data/intake/
+â†’ PowerShell intake workflow
+â†’ data/processing/
+â†’ Python validation pipeline
+â†’ SQLite observability tables
+â†’ JSON run report
+â†’ data/processed/, data/review/, or data/rejected/
+â†’ Power BI-ready analytics layer
+```
+
+## What This Demonstrates
+
+* Supplier/product data validation
+* Local pipeline observability
+* SQLite schema design
+* PowerShell intake automation
+* Python CLI development
+* Row-level validation and error reporting
+* File routing by validation outcome
+* Power Query and DAX planning
+* Dashboard-ready data quality reporting
+* Public-safe documentation discipline
 
 ## Public-Safe Boundary
 
-The repository uses mock/public-safe sample data only. It does not include patient data, customer addresses, payer records, order IDs, clinical records, private supplier agreements, or private financial data.
+This repository uses mock/public-safe sample data only.
 
-HCPCS-like fields are classification-support examples only. This project does not provide billing guidance, reimbursement automation, payer policy logic, clinical decisioning, or production deployment claims.
+It does not include patient data, customer addresses, payer records, order IDs, clinical records, private supplier agreements, or private financial data.
+
+HCPCS-like values are included only as classification-support examples. This project does not provide billing guidance, reimbursement automation, payer policy logic, clinical decisioning, or production deployment claims.
 
 ## Repository Layout
 
 ```text
 automation/
-  database/schema.sql
-  powershell/Run-SamplePipeline.ps1
-  powershell/Watch-IntakeFolder.ps1
+  database/
+    schema.sql
+  powershell/
+    Run-SamplePipeline.ps1
+    Watch-IntakeFolder.ps1
+
+analytics/
+  dax_measures.md
+  dashboard_build_notes.md
+  dashboard_wireframe.md
+  screenshots/
+    README.md
+
 data/
-  sample_input/supplier_product_records_sample.csv
+  sample_input/
+    supplier_product_records_sample.csv
+
 docs/
   data_dictionary.md
   github_release_checklist.md
   operating_notes.md
   powershell_intake_workflow.md
   proof_notes.md
+  review/
   validation_rules.md
-  outputs/reports/
+
 queries/
   TransformOperationsLog.m
-analytics/
-  dax_measures.md
-  dashboard_build_notes.md
-  dashboard_wireframe.md
-  screenshots/README.md
+
 src/
   dme_crt_supplier_observability/
+
 tests/
 ```
 
@@ -61,20 +102,25 @@ python -m unittest discover -s tests
 python -m dme_crt_supplier_observability.cli run-demo
 ```
 
-The demo initializes the SQLite runtime database, validates the public-safe sample file, and writes a JSON run report under `outputs/run_reports/`.
+The demo initializes the local SQLite runtime database, validates the public-safe sample CSV, and writes a JSON run report.
 
 Expected demo pattern:
 
-- 6 total sample rows
-- 2 passing rows
-- 1 warning row
-- 3 rejected rows
-- Pipeline status `WARNING` because the sample intentionally includes review and rejection examples
+```text
+6 total sample rows
+2 passing rows
+1 warning row
+3 rejected rows
+Pipeline status: WARNING
+```
+
+The `WARNING` status is expected because the sample file intentionally includes clean, review-needed, and rejected records.
 
 ## Python CLI
 
 ```powershell
 $env:PYTHONPATH = "src"
+
 python -m dme_crt_supplier_observability.cli init-db --reset
 python -m dme_crt_supplier_observability.cli seed-db --reset
 python -m dme_crt_supplier_observability.cli validate-file data\sample_input\supplier_product_records_sample.csv
@@ -83,13 +129,13 @@ python -m dme_crt_supplier_observability.cli run-demo
 
 ## PowerShell Intake Demo
 
-Direct local script execution may be blocked by Windows execution policy. The documented process-scoped command is:
+Windows may block direct script execution depending on local execution policy. Use the process-scoped command below:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\automation\powershell\Run-SamplePipeline.ps1
 ```
 
-Dry-run path:
+Dry-run mode:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\automation\powershell\Run-SamplePipeline.ps1 -DryRun
@@ -97,41 +143,106 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\automation\powershell\
 
 The PowerShell workflow preserves the original intake file and routes only the processing copy.
 
+Routing behavior:
+
+```text
+Clean file â†’ data/processed/
+Warnings only â†’ data/review/
+Rejected rows present â†’ data/rejected/
+```
+
+## SQLite Observability Tables
+
+The local SQLite schema tracks both run-level and row-level outcomes.
+
+```text
+pipeline_logs
+validation_errors
+file_intake_registry
+product_record_audit
+```
+
+These tables support operational review questions such as:
+
+* Which files were processed?
+* Which runs completed with warnings or failures?
+* Which rows were rejected?
+* Which validation rules are triggered most often?
+* Which supplier/product records require review?
+
 ## Analytics Layer
 
-Phase 3 documents the Power BI build layer:
+The repository includes a Power BI-ready analytics specification:
 
-- `queries/TransformOperationsLog.m`
-- `analytics/dax_measures.md`
-- `analytics/dashboard_wireframe.md`
-- `analytics/dashboard_build_notes.md`
-- `analytics/screenshots/README.md`
+```text
+queries/TransformOperationsLog.m
+analytics/dax_measures.md
+analytics/dashboard_wireframe.md
+analytics/dashboard_build_notes.md
+analytics/screenshots/README.md
+```
 
-No PBIX file or real dashboard screenshots are included. The dashboard is represented as documented Power Query, DAX measures, wireframe, build notes, and screenshot placeholder instructions.
+Power BI status: analytics-ready.
+
+The repo includes the Power Query template, DAX measures, dashboard wireframe, and build notes needed to create the report in Power BI Desktop. No PBIX file or real dashboard screenshots are included in this release.
+
+Dashboard pages are planned around:
+
+```text
+Pipeline Health Overview
+Supplier/Product Data Quality
+Error Review Queue
+```
 
 ## Tests
+
+Run the test suite:
 
 ```powershell
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests
 ```
 
-The test suite covers validation behavior, duplicate handling, SQLite logging, JSON reporting, demo execution, PowerShell asset contracts, and analytics documentation boundaries.
+The tests cover:
+
+* Validation rule behavior
+* Duplicate handling
+* SQLite table creation
+* Pipeline log insertion
+* File intake registry insertion
+* Product audit insertion
+* Validation error insertion
+* JSON report creation
+* CLI demo execution
+* PowerShell asset contracts
+* Analytics documentation boundaries
 
 ## Evidence
 
-Final review artifacts are stored under `docs/review/`:
+Final review artifacts are stored under:
 
-- Final rubric score
-- GitHub readiness report
-- Final claims and boundaries
-- Final next steps
+```text
+docs/review/
+```
 
-Runtime databases, generated run JSON files, routed CSV copies, marker files, package outputs, and local cache files are excluded by `.gitignore`.
+Included review documents:
 
-## Future Re-Entry Warnings
+```text
+final_rubric_score.md
+github_readiness_report.md
+final_claims_and_boundaries.md
+final_next_steps.md
+```
 
-- Do not add private customer, patient, payer, order, clinical, private supplier agreement, or financial data.
-- Do not claim production deployment, billing automation, payer policy logic, clinical decisioning, PBIX completion, or real dashboard screenshots.-
-- Power BI Status: Analytics-ready. The repo includes the Power Query template, DAX measures, dashboard wireframe, and build notes needed to create the report in Power BI Desktop. A PBIX file is not included in this release.
-- If validation severity changes, update tests, docs, DAX assumptions, and phase reports together.
+Runtime databases, generated run reports, routed CSV copies, marker files, package outputs, and local cache files are excluded by `.gitignore`.
+
+## Maintenance Notes / Future Re-Entry Warnings
+
+If validation severity changes, update the tests, validation documentation, DAX assumptions, and dashboard notes together.
+
+If a PBIX report is created later, add only real screenshots captured from the Power BI report and keep all data public-safe.
+
+## Author
+
+Joel Landry Nge
+
