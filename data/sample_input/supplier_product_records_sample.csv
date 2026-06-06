@@ -1,0 +1,7 @@
+supplier_name,manufacturer,model,sku,mpn,product_category,product_type,hcpcs_candidate,compatible_chair_family,documentation_source,listing_status,compatibility_notes
+Mobility Sample Supply,Permobil,F5 Corpus VS,F5VS-001,PM-F5VS-BASE,power_wheelchair,standing_power_chair,K0861,Permobil F-Series,manufacturer manual + inspection,ready_for_review,Verify configuration before publication
+Mobility Sample Supply,Permobil,CJSM2 Joystick,CJSM2-014,D51635.05,controller,joystick_controller,E2374,R-Net systems,manufacturer documentation,ready_for_review,Requires R-Net configuration review
+Seating Demo Supply,Stealth Products,Comfort Plus Cushion,CUSH-001,ST-COMFORT,seating,seating_cushion,E2607,Permobil F-Series,manufacturer brochure,ready_for_review,
+Bad Sample,,Unknown Model,BAD-001,,unknown,unknown,BADCODE,,missing,rejected,
+Parts Demo Supply,Quantum Rehab,Q-Logic Interface Module,QLOGIC-DUP,QL-MOD-42,electronics,electronic_module,E2399,Q-Logic systems,manufacturer install sheet,ready_for_review,Requires configured system review
+Parts Demo Supply,Quantum Rehab,Q-Logic Interface Module Copy,QLOGIC-DUP,QL-MOD-43,electronics,electronic_module,E2399,Q-Logic systems,manufacturer install sheet,ready_for_review,Requires configured system review
