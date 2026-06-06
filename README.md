@@ -38,6 +38,7 @@ docs/
   powershell_intake_workflow.md
   proof_notes.md
   validation_rules.md
+  outputs/reports/
 queries/
   TransformOperationsLog.m
 analytics/
@@ -48,7 +49,6 @@ analytics/
 src/
   dme_crt_supplier_observability/
 tests/
-outputs/reports/
 ```
 
 ## Quick Start
@@ -120,20 +120,18 @@ The test suite covers validation behavior, duplicate handling, SQLite logging, J
 
 ## Evidence
 
-Project evidence and phase reports are stored in `outputs/reports/`, including:
+Final review artifacts are stored under `docs/review/`:
 
-- Phase summaries
-- Test results
-- Rubric scores
-- Analytics layer review
-- Final claims and boundaries
+- Final rubric score
 - GitHub readiness report
+- Final claims and boundaries
+- Final next steps
 
-Runtime databases, generated run JSON files, routed CSV copies, and final package outputs are ignored by `.gitignore`.
+Runtime databases, generated run JSON files, routed CSV copies, marker files, package outputs, and local cache files are excluded by `.gitignore`.
 
 ## Future Re-Entry Warnings
 
 - Do not add private customer, patient, payer, order, clinical, private supplier agreement, or financial data.
-- Do not claim production deployment, billing automation, payer policy logic, clinical decisioning, PBIX completion, or real dashboard screenshots.
-- If a PBIX is created later, update `analytics/screenshots/README.md`, dashboard notes, proof notes, and final claims with exact evidence.
+- Do not claim production deployment, billing automation, payer policy logic, clinical decisioning, PBIX completion, or real dashboard screenshots.-
+- Power BI Status: Analytics-ready. The repo includes the Power Query template, DAX measures, dashboard wireframe, and build notes needed to create the report in Power BI Desktop. A PBIX file is not included in this release.
 - If validation severity changes, update tests, docs, DAX assumptions, and phase reports together.
