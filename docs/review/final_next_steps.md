@@ -19,7 +19,7 @@ Date: 2026-06-06
 ## Optional Future Enhancements
 
 - Build a PBIX from `queries/TransformOperationsLog.m` and `analytics/dax_measures.md`.
-- Capture real dashboard screenshots and place them in `analytics/screenshots/`.
+- Capture screenshots from an actual Power BI report and place them in `analytics/screenshots/`.
 - Add a short project walkthrough video or README GIF after real screenshots exist.
 - Add a small `Makefile` or PowerShell task runner if repeated local commands need a single entry point.
 
@@ -32,12 +32,12 @@ Date: 2026-06-06
 - Clinical records
 - Private supplier agreements
 - Private financial data
-- Production deployment claims
+- Deployment evidence
 - Billing automation claims
 - PBIX or screenshot claims without files
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - The final score is based on documented and tested assets present in the repository, not implied future dashboard work.
 - Keep generated runtime outputs out of GitHub.
-- If Phase 4 is rerun after new artifacts are added, recreate the final repo copy and zip.
+- If final packaging is rerun after new artifacts are added, recreate the public repo copy and zip.

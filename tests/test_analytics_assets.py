@@ -58,8 +58,8 @@ class AnalyticsAssetTests(unittest.TestCase):
 
         self.assertIn("no pbix file or real dashboard screenshot", wireframe)
         self.assertIn("no real power bi screenshots", screenshots)
-        self.assertIn("future re-entry warnings", wireframe)
-        self.assertIn("future re-entry warnings", screenshots)
+        self.assertIn("operating notes", wireframe)
+        self.assertIn("operating notes", screenshots)
 
 
 if __name__ == "__main__":

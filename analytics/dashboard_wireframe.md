@@ -1,6 +1,6 @@
 # Dashboard Wireframe
 
-Phase 3 provides a documented dashboard wireframe only. No PBIX file or real dashboard screenshot is included yet.
+This document provides a dashboard wireframe only. No PBIX file or real dashboard screenshot is included.
 
 ## Page 1: Pipeline Health Overview
 
@@ -96,13 +96,13 @@ Filters:
 - Keep each page dense and operational rather than promotional.
 - Use restrained colors: green for pass/success, amber for warnings/review, red for rejected/failed.
 - Keep row-level tables readable with conditional formatting on `severity` and `validation_status`.
-- Avoid implying production deployment; title the report as a local observability dashboard.
+- Avoid implying deployment evidence; title the report as a local observability dashboard.
 
 ## Screenshot Placeholder
 
 Until a PBIX is created, use `analytics/screenshots/README.md` as the screenshot placeholder. Replace it only after capturing real Power BI screenshots.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Do not claim a live dashboard exists without PBIX or screenshot evidence.
 - Preserve the three-page structure unless later data volume or reviewer feedback justifies a change.

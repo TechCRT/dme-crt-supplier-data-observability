@@ -111,7 +111,7 @@ Validated product row audit table.
 | `source_row_hash` | Stable hash of the row values. |
 | `created_at` | SQLite insert timestamp. |
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Do not add private customer, patient, payer, order, clinical, supplier agreement, or financial data.
 - If schema fields change, update Power Query, DAX, tests, and this dictionary together.

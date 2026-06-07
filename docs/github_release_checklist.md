@@ -13,6 +13,7 @@ Use this checklist before pushing the repository to GitHub.
 - [x] `data/sample_input/supplier_product_records_sample.csv`
 - [x] `docs/data_dictionary.md`
 - [x] `docs/validation_rules.md`
+- [x] `docs/methodology.md`
 - [x] `docs/operating_notes.md`
 - [x] `docs/proof_notes.md`
 - [x] `docs/github_release_checklist.md`
@@ -35,18 +36,18 @@ Use this checklist before pushing the repository to GitHub.
 - [x] Runtime artifacts are ignored by `.gitignore`.
 - [x] Final repo copy and zip are created under `outputs/final_repo/`.
 
-## Do Not Claim
+## Scope Check
 
-- Production deployment
+- Deployment evidence
 - Billing automation
-- Payer policy logic
+- Payer-policy logic
 - Clinical decisioning
 - Private-data processing
 - PBIX completion
 - Real dashboard screenshots
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - If Git is initialized later, inspect `git status --short` before staging.
 - Do not commit runtime databases, generated JSON run reports, pycache files, or routed CSV copies.
-- If a real PBIX is added, capture screenshot evidence and update claims before release.
+- If a real PBIX is added, capture screenshot evidence and update scope notes before release.

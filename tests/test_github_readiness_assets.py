@@ -15,6 +15,7 @@ class GitHubReadinessAssetTests(unittest.TestCase):
             ROOT / ".gitignore",
             ROOT / "docs" / "data_dictionary.md",
             ROOT / "docs" / "validation_rules.md",
+            ROOT / "docs" / "methodology.md",
             ROOT / "docs" / "operating_notes.md",
             ROOT / "docs" / "proof_notes.md",
             ROOT / "docs" / "github_release_checklist.md",
@@ -31,7 +32,7 @@ class GitHubReadinessAssetTests(unittest.TestCase):
         self.assertIn("public-safe", readme)
         self.assertIn("no pbix file or real dashboard screenshots", readme)
         self.assertIn("does not provide billing guidance", readme)
-        self.assertIn("future re-entry warnings", readme)
+        self.assertIn("maintenance notes", readme)
 
     def test_claim_boundary_docs_reject_disallowed_claims(self) -> None:
         docs = "\n".join(
@@ -42,9 +43,9 @@ class GitHubReadinessAssetTests(unittest.TestCase):
         ).lower()
 
         required_boundary_phrases = [
-            "production deployment",
+            "deployment evidence",
             "billing automation",
-            "payer policy logic",
+            "payer-policy logic",
             "clinical decisioning",
             "private-data processing",
             "pbix completion",

@@ -1,6 +1,6 @@
 # Screenshot Placeholder
 
-No real Power BI screenshots are included in Phase 3.
+No real Power BI screenshots are included.
 
 This folder is reserved for future dashboard screenshots after a PBIX file or Power BI report is created from the documented Power Query and DAX layer.
 
@@ -21,7 +21,7 @@ Each screenshot should show public-safe sample data only.
 - Avoid private customer, patient, payer, order, clinical, supplier agreement, or financial data.
 - Keep HCPCS-like fields framed as classification-support examples only.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Do not replace this placeholder with generated dashboard art and present it as a real screenshot.
 - Do not claim the dashboard exists until PBIX or real screenshots are present.

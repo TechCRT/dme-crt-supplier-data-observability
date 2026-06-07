@@ -2,7 +2,7 @@
 
 These measures are designed for a Power BI model built from `queries/TransformOperationsLog.m`. They assume the model contains typed tables named `PipelineLogs`, `ValidationErrors`, `ProductRecordAudit`, and `FileIntakeRegistry`.
 
-No PBIX file is included in Phase 3. These measures document the intended analytics layer and should be pasted into Power BI after the Power Query tables are loaded.
+No PBIX file is included. These measures document the intended analytics layer and should be pasted into Power BI after the Power Query tables are loaded.
 
 ## Core Measures
 
@@ -166,7 +166,7 @@ CALCULATE(
 - Use `FileIntakeRegistry` for source-file intake and routing visibility.
 - HCPCS-like fields are classification-support examples only and should not be used for billing guidance.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Do not claim these measures are deployed until they are loaded into a PBIX or Power BI semantic model.
 - If table or column names change in Power Query, update this DAX document at the same time.

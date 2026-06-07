@@ -79,8 +79,8 @@ The documented Power BI layer uses:
 
 No PBIX or real screenshots are included in the current repository.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Do not push generated runtime artifacts.
-- Do not claim production deployment, billing automation, payer policy logic, clinical decisioning, PBIX completion, or real screenshots.
-- If a real Power BI report is built later, update proof notes, screenshot notes, and final claims before publishing.
+- Do not describe this local workflow as deployment evidence, billing automation, payer-policy logic, clinical decisioning, PBIX completion, or real screenshots.
+- If a real Power BI report is built later, update proof notes, screenshot notes, and scope notes before publishing.

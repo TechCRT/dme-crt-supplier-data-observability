@@ -37,7 +37,7 @@ class PowerShellAssetTests(unittest.TestCase):
 
         self.assertIn("public-safe", docs.lower())
         self.assertIn("classification-support examples only", docs)
-        self.assertIn("Future Re-Entry Warnings", docs)
+        self.assertIn("Operating Notes", docs)
 
 
 if __name__ == "__main__":

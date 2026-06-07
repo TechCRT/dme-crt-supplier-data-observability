@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Phase 3 documents the Power BI analytics layer. It does not include a PBIX file or real dashboard screenshots.
+This document describes the Power BI analytics layer. It does not include a PBIX file or real dashboard screenshots.
 
 ## Power Query Setup
 
@@ -101,14 +101,14 @@ Pages:
 - Supplier/Product Data Quality
 - Error Review Queue
 
-## Public-Safe Boundary
+## Project Scope
 
 Use the public-safe sample data and local runtime outputs only. Do not add private customer, patient, payer, order, clinical, private supplier agreement, or private financial data.
 
 HCPCS-like values are classification-support examples only and are not billing guidance.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Do not claim a PBIX, deployed semantic model, or real dashboard exists until those files are created.
 - If the SQLite schema changes, update the Power Query source SQL, DAX measures, and dashboard wireframe together.
-- Keep Phase 4 GitHub release polish separate from this analytics documentation pass.
+- Keep GitHub release polish separate from this analytics documentation.

@@ -1,10 +1,10 @@
 # Proof Notes
 
-This file records local evidence for the portfolio project. It is not a deployment log.
+This file records local evidence for the technical case study. It is not a deployment log.
 
 ## Test Evidence
 
-Final Phase 4 test command:
+Final test command:
 
 ```powershell
 $env:PYTHONPATH='src'; python -m unittest discover -s tests
@@ -33,7 +33,7 @@ Covered areas:
 
 ## Demo Evidence
 
-Phase 4 reruns the demo command:
+The demo command:
 
 ```powershell
 $env:PYTHONPATH='src'; python -m dme_crt_supplier_observability.cli run-demo
@@ -53,7 +53,7 @@ This pattern is expected because the sample file intentionally includes warning 
 
 ## Analytics Evidence
 
-Phase 3 documents the Power BI analytics layer through:
+The Power BI analytics layer is documented through:
 
 - Power Query / M file
 - DAX measure documentation
@@ -63,11 +63,11 @@ Phase 3 documents the Power BI analytics layer through:
 
 No PBIX file and no real screenshots are present.
 
-## Boundary Evidence
+## Scope Evidence
 
 The project uses mock/public-safe sample data only. It does not contain patient data, customer addresses, payer records, order IDs, clinical records, private supplier agreements, or private financial data.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Update this file with exact final test/demo run IDs after each final release pass.
 - Do not treat local runtime JSON reports as production monitoring evidence.

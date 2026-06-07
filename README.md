@@ -1,10 +1,10 @@
 ﻿# DME/CRT Supplier Data Validation & Pipeline Observability
 
-A portfolio project demonstrating a local data operations workflow for supplier and product records in the DME/CRT space.
+A technical case study demonstrating a local data operations workflow for supplier and product records in the DME/CRT space.
 
 The system validates incoming supplier/product CSV files, logs pipeline activity to SQLite, routes files through a PowerShell intake workflow, and defines a Power BI-ready analytics layer for monitoring pipeline health and data quality.
 
-The goal is to show practical data operations judgment: structured intake, row-level validation, durable audit tables, testable Python code, and clear observability outputs.
+The implementation shows practical data operations judgment: structured intake, row-level validation, durable audit tables, testable Python code, and clear observability outputs.
 
 ## Project Summary
 
@@ -23,16 +23,30 @@ The workflow catches those issues before downstream use by:
 
 ```text
 data/intake/
-â†’ PowerShell intake workflow
-â†’ data/processing/
-â†’ Python validation pipeline
-â†’ SQLite observability tables
-â†’ JSON run report
-â†’ data/processed/, data/review/, or data/rejected/
-â†’ Power BI-ready analytics layer
+-> PowerShell intake workflow
+-> data/processing/
+-> Python validation pipeline
+-> SQLite observability tables
+-> JSON run report
+-> data/processed/, data/review/, or data/rejected/
+-> Power BI-ready analytics layer
 ```
 
-## What This Demonstrates
+## Design Pattern
+
+```text
+supplier/product CSV
+-> normalized row model
+-> validation rules
+-> pass, warning, or reject outcome
+-> reviewable file routing and SQLite audit records
+-> JSON run report
+-> analytics-ready observability layer
+```
+
+The key boundary is between validation and action. Warning rows are routed for review instead of being treated as clean records, rejected rows are separated from reviewable warnings, and each run leaves row-level audit evidence.
+
+## Implementation Coverage
 
 * Supplier/product data validation
 * Local pipeline observability
@@ -45,13 +59,13 @@ data/intake/
 * Dashboard-ready data quality reporting
 * Public-safe documentation discipline
 
-## Public-Safe Boundary
+## Project Scope
 
 This repository uses mock/public-safe sample data only.
 
 It does not include patient data, customer addresses, payer records, order IDs, clinical records, private supplier agreements, or private financial data.
 
-HCPCS-like values are included only as classification-support examples. This project does not provide billing guidance, reimbursement automation, payer policy logic, clinical decisioning, or production deployment claims.
+HCPCS-like values are included only as classification-support examples. This project does not provide billing guidance, reimbursement automation, payer-policy logic, clinical decisioning, or deployment evidence.
 
 ## Repository Layout
 
@@ -77,6 +91,7 @@ data/
 docs/
   data_dictionary.md
   github_release_checklist.md
+  methodology.md
   operating_notes.md
   powershell_intake_workflow.md
   proof_notes.md
@@ -146,9 +161,9 @@ The PowerShell workflow preserves the original intake file and routes only the p
 Routing behavior:
 
 ```text
-Clean file â†’ data/processed/
-Warnings only â†’ data/review/
-Rejected rows present â†’ data/rejected/
+Clean file -> data/processed/
+Warnings only -> data/review/
+Rejected rows present -> data/rejected/
 ```
 
 ## SQLite Observability Tables
@@ -219,7 +234,7 @@ The tests cover:
 
 ## Evidence
 
-Final review artifacts are stored under:
+Review artifacts are stored under:
 
 ```text
 docs/review/
@@ -236,7 +251,7 @@ final_next_steps.md
 
 Runtime databases, generated run reports, routed CSV copies, marker files, package outputs, and local cache files are excluded by `.gitignore`.
 
-## Maintenance Notes / Future Re-Entry Warnings
+## Maintenance Notes
 
 If validation severity changes, update the tests, validation documentation, DAX assumptions, and dashboard notes together.
 

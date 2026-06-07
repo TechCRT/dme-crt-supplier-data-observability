@@ -6,7 +6,7 @@ The validator applies public-safe product-data quality rules to each CSV row. Ro
 - `WARNING`: one or more `WARNING` findings and no `ERROR` findings
 - `REJECT`: one or more `ERROR` findings
 
-Phase 4 keeps the Phase 1 validation rules and severity choices unchanged.
+This polish pass keeps the validation rules and severity choices unchanged.
 
 ## Rules
 
@@ -49,12 +49,12 @@ Phase 4 keeps the Phase 1 validation rules and severity choices unchanged.
 - `seating_cushion`
 - `standing_power_chair`
 
-## Public-Safe Boundary
+## Project Scope
 
-HCPCS-like values are classification-support examples only and are not billing guidance. These rules do not automate reimbursement, payer policy, clinical decisions, or production listing publication.
+HCPCS-like values are classification-support examples only and are not billing guidance. These rules do not automate reimbursement, payer-policy decisions, clinical decisions, or listing publication.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Any severity change must update tests, documentation, DAX assumptions, and phase reports together.
 - Keep warning rows separate from rejected rows in analytics and workflow routing.
-- Do not add private-data validation examples to this public portfolio project.
+- Do not add private-data validation examples to this public technical case study.

@@ -6,7 +6,7 @@ Date: 2026-06-06
 
 Decision: ready for GitHub packaging and manual review before push.
 
-The repository contains the expected portfolio source files, documentation, tests, CI workflow, license, public-safe sample data, and final package outputs.
+The repository contains the expected source files, documentation, tests, CI workflow, license, public-safe sample data, and package outputs.
 
 ## Required Assets
 
@@ -68,7 +68,7 @@ The final package excludes runtime databases, generated JSON run reports, routed
 
 The scaffold is not initialized as a Git repository. This was treated as non-blocking because final packaging was requested and pushing to GitHub was explicitly disallowed.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
 - Before pushing, initialize Git or copy the final package into a Git repository, then inspect `git status --short`.
 - Do not stage runtime artifacts, generated run JSON files, routed CSV copies, `.processed_markers`, or pycache files.

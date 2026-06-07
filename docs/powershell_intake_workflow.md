@@ -84,9 +84,9 @@ The workflow copies intake files to processing instead of moving the original so
 
 Generated CSV copies, marker files, runtime databases, and JSON run reports are excluded by `.gitignore`.
 
-## Future Re-Entry Warnings
+## Operating Notes
 
-- Do not treat this as a production file watcher or deployment service; it is a local portfolio demonstration.
+- Do not treat this as a deployment service; it is a local technical case study.
 - Do not add private supplier, patient, customer, payer, order, or financial data to the intake folders.
-- Keep Phase 3 analytics work separate; Power Query, DAX, and dashboard files are not part of this phase.
+- Keep analytics documentation separate from runtime routing; Power Query, DAX, and dashboard files do not change the intake behavior.
 - If PowerShell execution policy blocks direct script execution, run the documented commands from a PowerShell session where local scripts are allowed or use the dry-run path to verify routing intent.
